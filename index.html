@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banff Snowboarding Trip Planner - January 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .trip-info {
+            background: #ecf0f1;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .info-box {
+            text-align: center;
+        }
+        
+        .info-box .label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .info-box .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 5px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab:hover {
+            color: #667eea;
+        }
+        
+        .tab.active {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .option-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+        
+        .option-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .option-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .option-details {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .link-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .budget-tracker {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            align-items: center;
+        }
+        
+        .budget-item:last-child {
+            border-bottom: none;
+        }
+        
+        .budget-item input {
+            width: 120px;
+            padding: 8px;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        
+        .budget-total {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .checklist {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .checklist-item.completed label {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        
+        .itinerary-day {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .day-header {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .day-content {
+            color: #2c3e50;
+            line-height: 1.8;
+        }
+        
+        .notes-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .notes-section textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            resize: vertical;
+        }
+        
+        .icon {
+            font-size: 1.5em;
+        }
+        
+        .alert-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tip-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .trip-info {
+                flex-direction: column;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+            }
+            
+            .tab {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ Banff Snowboarding Adventure 2025</h1>
+            <p>Brothers Trip to the Canadian Rockies</p>
+        </div>
+        
+        <div class="trip-info">
+            <div class="info-box">
+                <div class="label">Departure From</div>
+                <div class="value">Melbourne, FL</div>
+            </div>
+            <div class="info-box">
+                <div class="label">Destination</div>
+                <div class="value">Canmore, AB</div>
+            </div>
+            <div class="info-box">
+                <div class="label">Trip Month</div>
+                <div class="value">January 2025</div>
+            </div>
+            <div class="info-box">
+                <div class="label">Duration</div>
+                <div class="value">5 Days</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('flights')">✈️ Flights</button>
+                <button class="tab" onclick="showTab('lodging')">🏠 Lodging</button>
+                <button class="tab" onclick="showTab('resorts')">⛷️ Resorts & Tickets</button>
+                <button class="tab" onclick="showTab('transportation')">🚗 Transportation</button>
+                <button class="tab" onclick="showTab('gear')">🏂 Gear Rental</button>
+                <button class="tab" onclick="showTab('itinerary')">📅 Itinerary</button>
+                <button class="tab" onclick="showTab('budget')">💰 Budget</button>
+                <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
+                <button class="tab" onclick="showTab('notes')">📝 Notes</button>
+            </div>
+            
+            <!-- FLIGHTS TAB -->
+            <div id="flights" class="tab-content active">
+                <div class="section">
+                    <h2><span class="icon">✈️</span> Flight Options</h2>
+                    
+                    <div class="alert-box">
+                        <strong>Pro Tip:</strong> Book flights 6-8 weeks in advance for best prices. Use Google Flights to set up price alerts for Melbourne (MLB) to Calgary (YYC) routes.
+                    </div>
+                    
+                    <h3>Flight Search Links</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Google Flights</div>
+                        </div>
+                        <div class="option-details">
+                            Best for comparing multiple airlines and setting price alerts. Shows entire month pricing calendar.
+                        </div>
+                        <a href="https://www.google.com/travel/flights?q=flights+from+melbourne+florida+to+calgary" target="_blank" class="link-button">Search Flights</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Kayak</div>
+                        </div>
+                        <div class="option-details">
+                            Great price comparison tool with flexible date search. Shows price trends.
+                        </div>
+                        <a href="https://www.kayak.com/flights/MLB-YYC" target="_blank" class="link-button">Search Flights</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Direct Airline Websites</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Common routes with one connection:</strong><br>
+                            • Delta (via Atlanta or Detroit)<br>
+                            • United (via Houston or Denver)<br>
+                            • American (via Charlotte or Dallas)<br>
+                            • Southwest (check Tampa/Orlando departures for better rates)
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Flight Strategy:</strong> Melbourne is a small airport, so you might find better deals flying out of Orlando (MCO) or Tampa (TPA). It's about 1-1.5 hours drive but could save $100-200 per ticket. Consider this if your brother can help with the drive.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- LODGING TAB -->
+            <div id="lodging" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">🏠</span> Lodging in Canmore</h2>
+                    
+                    <div class="alert-box">
+                        <strong>Why Canmore?</strong> It's 15-20 minutes from Banff, typically 30-40% cheaper for lodging, and has a great local vibe with breweries and restaurants. You're making a smart choice!
+                    </div>
+                    
+                    <h3>Budget Options ($80-120/night split between 2)</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Airbnb Canmore</div>
+                            <div class="price">~$100-150/night</div>
+                        </div>
+                        <div class="option-details">
+                            Look for condos with kitchens to save on food. Many have parking included. Filter for "entire place" with 2 beds/1 bath.
+                        </div>
+                        <a href="https://www.airbnb.com/s/Canmore--Alberta--Canada/homes" target="_blank" class="link-button">Browse Airbnb</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">VRBO Canmore</div>
+                            <div class="price">~$110-160/night</div>
+                        </div>
+                        <div class="option-details">
+                            Similar to Airbnb but sometimes has different inventory. Good for finding ski-in/ski-out condos.
+                        </div>
+                        <a href="https://www.vrbo.com/search/keywords:canmore-alberta-canada" target="_blank" class="link-button">Browse VRBO</a>
+                    </div>
+                    
+                    <h3>Hotel Options</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Canmore Inn & Suites</div>
+                            <div class="price">~$120-150/night</div>
+                        </div>
+                        <div class="option-details">
+                            Clean, comfortable, includes breakfast. Good base camp option. Free parking.
+                        </div>
+                        <a href="https://www.booking.com/city/ca/canmore.html" target="_blank" class="link-button">Check Booking.com</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Rocky Mountain Ski Lodge</div>
+                            <div class="price">~$100-130/night</div>
+                        </div>
+                        <div class="option-details">
+                            Budget-friendly, ski-focused lodge. Basic but functional with good reviews from boarders.
+                        </div>
+                        <a href="https://www.booking.com/city/ca/canmore.html" target="_blank" class="link-button">Check Availability</a>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Booking Tip:</strong> Use Booking.com's "Free Cancellation" filter so you can book now and adjust dates later if needed. Many places offer 10-15% discounts for stays of 5+ nights.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RESORTS TAB -->
+            <div id="resorts" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">⛷️</span> Ski Resorts & Lift Tickets</h2>
+                    
+                    <div class="alert-box">
+                        <strong>All three resorts are incredible!</strong> Lake Louise is the biggest, Sunshine has the most snow, and Norquay is closest. You can't go wrong with any of them.
+                    </div>
+                    
+                    <h3>Lake Louise Ski Resort</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Lake Louise</div>
+                            <div class="price">$145-165 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Distance from Canmore:</strong> 45 minutes<br>
+                            <strong>Terrain:</strong> 4,200 acres, 164 runs, 4 terrain parks<br>
+                            <strong>Best For:</strong> Variety and stunning views. Largest ski area in Canada.<br>
+                            <strong>Why You'll Love It:</strong> Massive mountain with terrain for all levels. The back bowls are legendary for powder days.
+                        </div>
+                        <a href="https://www.skilouise.com/" target="_blank" class="link-button">Visit Website</a>
+                        <a href="https://www.skilouise.com/lift-tickets" target="_blank" class="link-button">Buy Tickets</a>
+                    </div>
+                    
+                    <h3>Sunshine Village</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Sunshine Village</div>
+                            <div class="price">$155-175 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Distance from Canmore:</strong> 35 minutes<br>
+                            <strong>Terrain:</strong> 3,358 acres, 137 runs, 3 terrain parks<br>
+                            <strong>Best For:</strong> Snow quality and tree runs. Gets the most snow in the Rockies.<br>
+                            <strong>Why You'll Love It:</strong> High elevation (base at 7,200 ft) means better snow. Delirium Dive is epic if you're feeling bold.
+                        </div>
+                        <a href="https://www.skibanff.com/" target="_blank" class="link-button">Visit Website</a>
+                        <a href="https://www.skibanff.com/tickets-passes/lift-tickets/" target="_blank" class="link-button">Buy Tickets</a>
+                    </div>
+                    
+                    <h3>Mount Norquay</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Mount Norquay</div>
+                            <div class="price">$115-135 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Distance from Canmore:</strong> 20 minutes<br>
+                            <strong>Terrain:</strong> 190 acres, 60 runs, great steeps<br>
+                            <strong>Best For:</strong> Night skiing and less crowded runs. Most affordable option.<br>
+                            <strong>Why You'll Love It:</strong> Smaller but super fun. Known for steep terrain. Locals mountain with a chill vibe.
+                        </div>
+                        <a href="https://banffnorquay.com/" target="_blank" class="link-button">Visit Website</a>
+                        <a href="https://banffnorquay.com/tickets-and-passes" target="_blank" class="link-button">Buy Tickets</a>
+                    </div>
+                    
+                    <h3>Multi-Day Pass Options</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">SkiBig3 Pass</div>
+                            <div class="price">~$400 CAD for 3 days</div>
+                        </div>
+                        <div class="option-details">
+                            Gives you access to all three resorts. Best value if you want to sample everything. Can be used across non-consecutive days.
+                        </div>
+                        <a href="https://www.skibig3.com/" target="_blank" class="link-button">Learn More</a>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Money Saving Tip:</strong> Buy lift tickets online in advance - you'll save $10-20 per day compared to buying at the window. Check for early bird specials in November/December.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TRANSPORTATION TAB -->
+            <div id="transportation" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">🚗</span> Transportation & Car Rentals</h2>
+                    
+                    <div class="alert-box">
+                        <strong>Important:</strong> You'll need a rental car. Public transportation to the resorts is limited, and having your own wheels gives you freedom to explore. Winter tires are required by law in Alberta in winter.
+                    </div>
+                    
+                    <h3>Car Rental Companies at Calgary Airport</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Enterprise Rent-A-Car</div>
+                            <div class="price">$40-70 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Location:</strong> Calgary Airport (YYC)<br>
+                            SUV or AWD sedan recommended for winter driving. Winter tires included.<br>
+                            Split between 2 people: $20-35 USD/day per person
+                        </div>
+                        <a href="https://www.enterprise.com/" target="_blank" class="link-button">Check Rates</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Budget Car Rental</div>
+                            <div class="price">$35-65 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            Often has competitive rates. Good selection of AWD vehicles. Check for weekly rates for better deals.
+                        </div>
+                        <a href="https://www.budget.com/" target="_blank" class="link-button">Check Rates</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Kayak Car Rental Comparison</div>
+                        </div>
+                        <div class="option-details">
+                            Compare all rental companies at once. Filter for AWD/4WD vehicles suitable for winter mountain driving.
+                        </div>
+                        <a href="https://www.kayak.com/cars" target="_blank" class="link-button">Compare Rentals</a>
+                    </div>
+                    
+                    <h3>Driving Info</h3>
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Calgary Airport to Canmore</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Distance:</strong> 105 km (65 miles)<br>
+                            <strong>Drive Time:</strong> 1 hour 15 minutes in good conditions<br>
+                            <strong>Route:</strong> Trans-Canada Highway (Hwy 1) West - scenic and well-maintained<br>
+                            <strong>Winter Driving:</strong> Can take longer in snow. Check road conditions at 511.alberta.ca
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Winter Driving Tips:</strong> 
+                        • Winter tires are mandatory and included in rentals
+                        • Keep emergency kit in car (blanket, snacks, water)
+                        • Fill up gas in Canmore before heading to resorts
+                        • Check Parks Canada website for road conditions
+                        • Your military discipline will serve you well - just take it slow and steady
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GEAR TAB -->
+            <div id="gear" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">🏂</span> Snowboard Gear Rental</h2>
+                    
+                    <div class="alert-box">
+                        <strong>Rental vs Bring Your Own:</strong> If you have your own gear, bring it! You'll save $40-60/day per person. Airlines typically allow one snowboard bag (up to 50lbs) as checked luggage.
+                    </div>
+                    
+                    <h3>Rental Shops in Canmore</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Rebound Cycle & Ski</div>
+                            <div class="price">$45-55 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Package Includes:</strong> Board, boots, bindings<br>
+                            <strong>Location:</strong> Downtown Canmore<br>
+                            Great selection and knowledgeable staff. Multi-day discounts available.
+                        </div>
+                        <a href="https://reboundcycle.com/" target="_blank" class="link-button">Visit Website</a>
+                    </div>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Gear Up Sport</div>
+                            <div class="price">$40-50 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            <strong>Package Includes:</strong> Board, boots, bindings, helmet<br>
+                            Local shop with competitive prices. Online booking available with discount.
+                        </div>
+                        <a href="https://www.gearupsport.com/" target="_blank" class="link-button">Visit Website</a>
+                    </div>
+                    
+                    <h3>On-Mountain Rentals</h3>
+                    
+                    <div class="option-card">
+                        <div class="option-header">
+                            <div class="option-title">Resort Rental Shops</div>
+                            <div class="price">$55-75 CAD/day</div>
+                        </div>
+                        <div class="option-details">
+                            Available at all three resorts but more expensive. Convenient if you have gear issues. Book online in advance for 10-15% discount.
+                        </div>
+                    </div>
+                    
+                    <h3>What to Bring From Home</h3>
+                    <div class="option-card">
+                        <div class="option-details">
+                            <strong>Essential Cold Weather Gear:</strong><br>
+                            ✓ Base layers (synthetic or merino wool - not cotton!)<br>
+                            ✓ Mid layer (fleece or insulated jacket)<br>
+                            ✓ Snowboard jacket & pants (waterproof)<br>
+                            ✓ Gloves or mittens + hand warmers<br>
+                            ✓ Buff/neck gaiter & beanie<br>
+                            ✓ Goggles (consider a spare if you've got them)<br>
+                            ✓ Helmet (can rent but your own is better fit)<br>
+                            ✓ Sunscreen & lip balm (high altitude = intense sun!)<br>
+                            ✓ Warm socks (ski/snowboard specific)
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> January in the Rockies can be -10°C to -20°C (14°F to -4°F). Layer up! Your time in the elements during Navy outdoor training will help you appreciate good layering. The mountains are no joke when it comes to wind chill.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ITINERARY TAB -->
+            <div id="itinerary" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">📅</span> Sample 5-Day Itinerary</h2>
+                    
+                    <div class="alert-box">
+                        This is a suggested itinerary. Adjust based on your actual travel dates and preferences!
+                    </div>
+                    
+                    <div class="itinerary-day">
+                        <div class="day-header">Day 1: Travel Day</div>
+                        <div class="day-content">
+                            <strong>Morning:</strong> Fly from Melbourne, FL to Calgary (likely 1-2 connections)<br>
+                            <strong>Afternoon:</strong> Land in Calgary, pick up rental car, drive to Canmore (1.5 hours)<br>
+                            <strong>Evening:</strong> Check into lodging, grocery shopping at Save-On-Foods or Safeway, settle in, early night to adjust to time zone (2 hour difference)<br>
+                            <strong>Dinner:</strong> Cook something simple or grab pizza at Rocky Mountain Flatbread Co.
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day">
+                        <div class="day-header">Day 2: Lake Louise</div>
+                        <div class="day-content">
+                            <strong>Morning:</strong> Early start (8am), drive to Lake Louise (45 min), first chair at 9am<br>
+                            <strong>All Day:</strong> Explore Canada's largest ski resort - start with groomers to warm up, then hit the back bowls<br>
+                            <strong>Lunch:</strong> On mountain (Whitehorn Lodge or pack sandwiches)<br>
+                            <strong>Evening:</strong> Back to Canmore, cook dinner, hit Iron Goat Pub or relax<br>
+                            <strong>Notes:</strong> Lake Louise is HUGE - you could spend 3 days here and not see it all
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day">
+                        <div class="day-header">Day 3: Sunshine Village</div>
+                        <div class="day-content">
+                            <strong>Morning:</strong> Drive to Sunshine Village (35 min), gondola up at 9am<br>
+                            <strong>All Day:</strong> Powder paradise - explore the alpine terrain and tree runs<br>
+                            <strong>Lunch:</strong> Chimney Corner Lounge (mid-mountain) or Eagle's Nest<br>
+                            <strong>Evening:</strong> Return to Canmore, brewery visit (Grizzly Paw or Canmore Brewing Co.)<br>
+                            <strong>Notes:</strong> Sunshine gets the most snow - if there's fresh powder, this is where you want to be
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day">
+                        <div class="day-header">Day 4: Mount Norquay + Banff Town</div>
+                        <div class="day-content">
+                            <strong>Morning:</strong> Half day at Mount Norquay (20 min from Canmore) - smaller but steep and fun<br>
+                            <strong>Afternoon:</strong> Drive into Banff town for lunch and exploring (15 min from Norquay)<br>
+                            <strong>Activities:</strong> Walk around Banff Avenue, check out Cascade of Time Garden, photos at Bow Falls<br>
+                            <strong>Evening:</strong> Dinner in Banff (Block Kitchen or Melissa's Missteak) or back to Canmore<br>
+                            <strong>Optional:</strong> If legs are tired, skip morning skiing and do Banff + Johnston Canyon icewalk
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day">
+                        <div class="day-header">Day 5: Flex Day / Travel Home</div>
+                        <div class="day-content">
+                            <strong>Option A (Morning flight):</strong> Early checkout, return car at Calgary, fly home<br>
+                            <strong>Option B (Afternoon/evening flight):</strong> Morning at Norquay or Lake Louise, then travel home<br>
+                            <strong>Option C (Extra day):</strong> Hit your favorite resort from earlier in the week or try the one you haven't done yet<br>
+                            <strong>Notes:</strong> Build in flexibility here based on flight times and how your legs are feeling!
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Bonus Activities if You Have Time:</strong><br>
+                        • Johnston Canyon frozen waterfall hike (must-do if you have time!)<br>
+                        • Banff Upper Hot Springs (perfect for sore muscles)<br>
+                        • Lake Minnewanka for winter scenery<br>
+                        • Canmore Nordic Centre for cross-country skiing<br>
+                        • Groceries & cooking dinner together (save money, hang with your brother)
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BUDGET TAB -->
+            <div id="budget" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">💰</span> Budget Calculator</h2>
+                    
+                    <div class="budget-tracker">
+                        <div class="budget-item">
+                            <div>
+                                <strong>Flights (Round-trip)</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">Melbourne, FL to Calgary</span>
+                            </div>
+                            <input type="number" id="flights" value="500" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Lodging (per person)</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">5 nights split between 2</span>
+                            </div>
+                            <input type="number" id="lodging" value="400" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Lift Tickets</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">3 days of riding</span>
+                            </div>
+                            <input type="number" id="tickets" value="400" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Rental Car (per person)</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">5 days split between 2</span>
+                            </div>
+                            <input type="number" id="car" value="250" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Gear Rental (if needed)</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">Board, boots, bindings for 3 days</span>
+                            </div>
+                            <input type="number" id="gear" value="150" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Food & Dining</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">Groceries + some meals out</span>
+                            </div>
+                            <input type="number" id="food" value="300" onchange="calculateTotal()">
+                        </div>
+                        
+                        <div class="budget-item">
+                            <div>
+                                <strong>Gas & Miscellaneous</strong><br>
+                                <span style="color: #7f8c8d; font-size: 0.9em;">Fuel, parking, snacks, souvenirs</span>
+                            </div>
+                            <input type="number" id="misc" value="150" onchange="calculateTotal()">
+                        </div>
+                    </div>
+                    
+                    <div class="budget-total">
+                        <div style="font-size: 0.8em; opacity: 0.9; margin-bottom: 5px;">ESTIMATED TOTAL PER PERSON</div>
+                        <div id="totalBudget">$2,150 USD</div>
+                    </div>
+                    
+                    <div class="tip-box" style="margin-top: 20px;">
+                        <strong>Ways to Save Money:</strong><br>
+                        • Bring your own snowboard gear (save $150)<br>
+                        • Cook most meals at your lodging (save $100-150)<br>
+                        • Book flights early and use flight alerts (save $100)<br>
+                        • Stay in an Airbnb with kitchen (easier to cook)<br>
+                        • Buy lift tickets online in advance (save $10-20/day)<br>
+                        • Consider Orlando or Tampa airport for better flight deals
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CHECKLIST TAB -->
+            <div id="checklist" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">✅</span> Planning Checklist</h2>
+                    
+                    <h3>8 Weeks Before Trip</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check1" onchange="toggleComplete(this)">
+                            <label for="check1">Book flights - set up price alerts and book when rates are good</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check2" onchange="toggleComplete(this)">
+                            <label for="check2">Reserve lodging in Canmore (with free cancellation)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check3" onchange="toggleComplete(this)">
+                            <label for="check3">Discuss and agree on budget with brother</label>
+                        </div>
+                    </div>
+                    
+                    <h3>4 Weeks Before Trip</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check4" onchange="toggleComplete(this)">
+                            <label for="check4">Book rental car at Calgary Airport</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check5" onchange="toggleComplete(this)">
+                            <label for="check5">Purchase lift tickets online (save money vs. buying at resort)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check6" onchange="toggleComplete(this)">
+                            <label for="check6">Reserve gear rentals if not bringing own equipment</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check7" onchange="toggleComplete(this)">
+                            <label for="check7">Check passport expiration dates (Canada requires valid passport)</label>
+                        </div>
+                    </div>
+                    
+                    <h3>2 Weeks Before Trip</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check8" onchange="toggleComplete(this)">
+                            <label for="check8">Review and gather cold weather gear (see Gear tab)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check9" onchange="toggleComplete(this)">
+                            <label for="check9">Buy/replace any missing gear (goggles, base layers, etc.)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check10" onchange="toggleComplete(this)">
+                            <label for="check10">Print or save digital copies of confirmations</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check11" onchange="toggleComplete(this)">
+                            <label for="check11">Notify bank/credit cards about travel to Canada</label>
+                        </div>
+                    </div>
+                    
+                    <h3>1 Week Before Trip</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check12" onchange="toggleComplete(this)">
+                            <label for="check12">Check weather forecast for packing adjustments</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check13" onchange="toggleComplete(this)">
+                            <label for="check13">Download offline maps for area</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check14" onchange="toggleComplete(this)">
+                            <label for="check14">Check-in for flights online</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check15" onchange="toggleComplete(this)">
+                            <label for="check15">Charge all electronics and portable batteries</label>
+                        </div>
+                    </div>
+                    
+                    <h3>Day Before / Day Of</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check16" onchange="toggleComplete(this)">
+                            <label for="check16">Pack snowboard gear if bringing own</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check17" onchange="toggleComplete(this)">
+                            <label for="check17">Pack clothing and toiletries</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check18" onchange="toggleComplete(this)">
+                            <label for="check18">Bring passport, boarding passes, rental car info</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check19" onchange="toggleComplete(this)">
+                            <label for="check19">Set up Dave and Kevin (cats) care while away</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="check20" onchange="toggleComplete(this)">
+                            <label for="check20">Take photos of your brother shredding for the vlogs!</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NOTES TAB -->
+            <div id="notes" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">📝</span> Trip Notes & Ideas</h2>
+                    
+                    <div class="notes-section">
+                        <textarea id="tripNotes" placeholder="Add your own notes here...
+
+Ideas for things to remember:
+- Restaurant recommendations from friends
+- Specific runs or terrain you want to hit
+- Photos you want to take
+- Brother's gear sizes for rentals
+- Questions to ask about conditions
+- Things to pack last minute
+
+This saves automatically to your browser!">
+                        </textarea>
+                    </div>
+                    
+                    <div class="tip-box" style="margin-top: 20px;">
+                        <strong>Using This Trip Planner:</strong><br>
+                        • Bookmark this page for easy access<br>
+                        • Your notes and budget numbers save automatically in your browser<br>
+                        • Share this page with your brother so you're both on the same page<br>
+                        • Update the budget calculator as you book things to track actual spending<br>
+                        • Check off items in the checklist as you complete them
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Save current tab to localStorage
+            localStorage.setItem('banffCurrentTab', tabName);
+        }
+        
+        // Budget calculator
+        function calculateTotal() {
+            const flights = parseFloat(document.getElementById('flights').value) || 0;
+            const lodging = parseFloat(document.getElementById('lodging').value) || 0;
+            const tickets = parseFloat(document.getElementById('tickets').value) || 0;
+            const car = parseFloat(document.getElementById('car').value) || 0;
+            const gear = parseFloat(document.getElementById('gear').value) || 0;
+            const food = parseFloat(document.getElementById('food').value) || 0;
+            const misc = parseFloat(document.getElementById('misc').value) || 0;
+            
+            const total = flights + lodging + tickets + car + gear + food + misc;
+            document.getElementById('totalBudget').textContent = '$' + total.toLocaleString() + ' USD';
+            
+            // Save to localStorage
+            saveBudget();
+        }
+        
+        function saveBudget() {
+            const budget = {
+                flights: document.getElementById('flights').value,
+                lodging: document.getElementById('lodging').value,
+                tickets: document.getElementById('tickets').value,
+                car: document.getElementById('car').value,
+                gear: document.getElementById('gear').value,
+                food: document.getElementById('food').value,
+                misc: document.getElementById('misc').value
+            };
+            localStorage.setItem('banffBudget', JSON.stringify(budget));
+        }
+        
+        function loadBudget() {
+            const saved = localStorage.getItem('banffBudget');
+            if (saved) {
+                const budget = JSON.parse(saved);
+                document.getElementById('flights').value = budget.flights;
+                document.getElementById('lodging').value = budget.lodging;
+                document.getElementById('tickets').value = budget.tickets;
+                document.getElementById('car').value = budget.car;
+                document.getElementById('gear').value = budget.gear;
+                document.getElementById('food').value = budget.food;
+                document.getElementById('misc').value = budget.misc;
+                calculateTotal();
+            }
+        }
+        
+        // Checklist functionality
+        function toggleComplete(checkbox) {
+            const item = checkbox.parentElement;
+            if (checkbox.checked) {
+                item.classList.add('completed');
+            } else {
+                item.classList.remove('completed');
+            }
+            saveChecklist();
+        }
+        
+        function saveChecklist() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const states = {};
+            checkboxes.forEach(cb => {
+                states[cb.id] = cb.checked;
+            });
+            localStorage.setItem('banffChecklist', JSON.stringify(states));
+        }
+        
+        function loadChecklist() {
+            const saved = localStorage.getItem('banffChecklist');
+            if (saved) {
+                const states = JSON.parse(saved);
+                Object.keys(states).forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = states[id];
+                        if (states[id]) {
+                            checkbox.parentElement.classList.add('completed');
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Notes functionality
+        function saveNotes() {
+            const notes = document.getElementById('tripNotes').value;
+            localStorage.setItem('banffNotes', notes);
+        }
+        
+        function loadNotes() {
+            const saved = localStorage.getItem('banffNotes');
+            if (saved) {
+                document.getElementById('tripNotes').value = saved;
+            }
+        }
+        
+        // Auto-save notes
+        document.addEventListener('DOMContentLoaded', function() {
+            const notesArea = document.getElementById('tripNotes');
+            if (notesArea) {
+                notesArea.addEventListener('input', saveNotes);
+            }
+            
+            // Load saved data
+            loadBudget();
+            loadChecklist();
+            loadNotes();
+            
+            // Load last viewed tab
+            const lastTab = localStorage.getItem('banffCurrentTab');
+            if (lastTab) {
+                const tabButton = document.querySelector(`[onclick="showTab('${lastTab}')"]`);
+                if (tabButton) {
+                    tabButton.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
