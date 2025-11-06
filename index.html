@@ -500,19 +500,19 @@
                     <h2><span class="icon">🏘️</span> Property Comparison</h2>
                     
                     <div class="alert-box">
-                        <strong>How to use this:</strong> When you find properties on Airbnb or VRBO you're interested in, click the "Share" button and copy the embed code. Paste it into the boxes below to compare them side-by-side!
+                        <strong>How to use this:</strong> When you find properties on Airbnb you're interested in, just copy the URL from your browser and paste it below. You'll be able to view the listings side-by-side and add your own notes!
                     </div>
                     
                     <h3>Property 1</h3>
                     <div class="option-card">
                         <div style="margin-bottom: 15px;">
-                            <label for="embed1" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb embed code here:</label>
-                            <textarea id="embed1" rows="3" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-family: monospace; font-size: 0.9em;" placeholder='<div class="airbnb-embed-frame" data-id="..." ...></div>'></textarea>
+                            <label for="embed1" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb URL here:</label>
+                            <input type="text" id="embed1" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-size: 1em;" placeholder='https://www.airbnb.com/rooms/...'/>
                             <button onclick="loadEmbed(1)" class="link-button" style="margin-top: 10px;">Load Property</button>
                             <button onclick="clearEmbed(1)" class="link-button" style="margin-top: 10px; background: #e74c3c;">Clear</button>
                         </div>
-                        <div id="display1" style="min-height: 320px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
-                            Embed will appear here
+                        <div id="display1" style="min-height: 500px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
+                            Property preview will appear here
                         </div>
                         <div style="margin-top: 15px;">
                             <label for="notes1" style="display: block; margin-bottom: 5px; font-weight: bold;">Your notes on this property:</label>
@@ -523,13 +523,13 @@
                     <h3>Property 2</h3>
                     <div class="option-card">
                         <div style="margin-bottom: 15px;">
-                            <label for="embed2" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb embed code here:</label>
-                            <textarea id="embed2" rows="3" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-family: monospace; font-size: 0.9em;" placeholder='<div class="airbnb-embed-frame" data-id="..." ...></div>'></textarea>
+                            <label for="embed2" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb URL here:</label>
+                            <input type="text" id="embed2" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-size: 1em;" placeholder='https://www.airbnb.com/rooms/...'/>
                             <button onclick="loadEmbed(2)" class="link-button" style="margin-top: 10px;">Load Property</button>
                             <button onclick="clearEmbed(2)" class="link-button" style="margin-top: 10px; background: #e74c3c;">Clear</button>
                         </div>
-                        <div id="display2" style="min-height: 320px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
-                            Embed will appear here
+                        <div id="display2" style="min-height: 500px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
+                            Property preview will appear here
                         </div>
                         <div style="margin-top: 15px;">
                             <label for="notes2" style="display: block; margin-bottom: 5px; font-weight: bold;">Your notes on this property:</label>
@@ -540,13 +540,13 @@
                     <h3>Property 3</h3>
                     <div class="option-card">
                         <div style="margin-bottom: 15px;">
-                            <label for="embed3" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb embed code here:</label>
-                            <textarea id="embed3" rows="3" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-family: monospace; font-size: 0.9em;" placeholder='<div class="airbnb-embed-frame" data-id="..." ...></div>'></textarea>
+                            <label for="embed3" style="display: block; margin-bottom: 5px; font-weight: bold;">Paste Airbnb URL here:</label>
+                            <input type="text" id="embed3" style="width: 100%; padding: 10px; border: 2px solid #ecf0f1; border-radius: 5px; font-size: 1em;" placeholder='https://www.airbnb.com/rooms/...'/>
                             <button onclick="loadEmbed(3)" class="link-button" style="margin-top: 10px;">Load Property</button>
                             <button onclick="clearEmbed(3)" class="link-button" style="margin-top: 10px; background: #e74c3c;">Clear</button>
                         </div>
-                        <div id="display3" style="min-height: 320px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
-                            Embed will appear here
+                        <div id="display3" style="min-height: 500px; border: 2px dashed #ecf0f1; border-radius: 8px; padding: 20px; text-align: center; color: #7f8c8d;">
+                            Property preview will appear here
                         </div>
                         <div style="margin-top: 15px;">
                             <label for="notes3" style="display: block; margin-bottom: 5px; font-weight: bold;">Your notes on this property:</label>
@@ -1225,27 +1225,51 @@ This saves automatically to your browser!">
         
         // Property embed functions
         function loadEmbed(num) {
-            const embedCode = document.getElementById('embed' + num).value.trim();
+            const url = document.getElementById('embed' + num).value.trim();
             const display = document.getElementById('display' + num);
             
-            if (!embedCode) {
-                display.innerHTML = '<p style="color: #e74c3c;">Please paste an embed code first</p>';
+            if (!url) {
+                display.innerHTML = '<p style="color: #e74c3c;">Please paste an Airbnb URL first</p>';
                 return;
             }
             
-            // Load the embed
-            display.innerHTML = embedCode;
+            // Validate it's an Airbnb URL
+            if (!url.includes('airbnb.com')) {
+                display.innerHTML = '<p style="color: #e74c3c;">Please paste a valid Airbnb URL</p>';
+                return;
+            }
+            
+            // Create iframe with the listing
+            display.innerHTML = `
+                <div style="text-align: left;">
+                    <iframe src="${url}" 
+                            width="100%" 
+                            height="450" 
+                            style="border: none; border-radius: 8px; margin-bottom: 10px;"
+                            frameborder="0"
+                            allowfullscreen>
+                    </iframe>
+                    <a href="${url}" 
+                       target="_blank" 
+                       class="link-button" 
+                       style="display: inline-block; margin-top: 10px;">
+                        Open in New Tab
+                    </a>
+                </div>
+            `;
             
             // Save to localStorage
             savePropertyEmbed(num);
             
             display.style.border = '2px solid #27ae60';
+            display.style.textAlign = 'left';
         }
         
         function clearEmbed(num) {
             document.getElementById('embed' + num).value = '';
-            document.getElementById('display' + num).innerHTML = 'Embed will appear here';
+            document.getElementById('display' + num).innerHTML = 'Property preview will appear here';
             document.getElementById('display' + num).style.border = '2px dashed #ecf0f1';
+            document.getElementById('display' + num).style.textAlign = 'center';
             document.getElementById('notes' + num).value = '';
             
             // Clear from localStorage
@@ -1254,8 +1278,8 @@ This saves automatically to your browser!">
         }
         
         function savePropertyEmbed(num) {
-            const embedCode = document.getElementById('embed' + num).value;
-            localStorage.setItem('banffEmbed' + num, embedCode);
+            const url = document.getElementById('embed' + num).value;
+            localStorage.setItem('banffEmbed' + num, url);
         }
         
         function savePropertyNotes(num) {
@@ -1265,13 +1289,33 @@ This saves automatically to your browser!">
         
         function loadAllPropertyData() {
             for (let i = 1; i <= 3; i++) {
-                // Load embed code
-                const savedEmbed = localStorage.getItem('banffEmbed' + i);
-                if (savedEmbed) {
-                    document.getElementById('embed' + i).value = savedEmbed;
-                    const display = document.getElementById('display' + i);
-                    display.innerHTML = savedEmbed;
-                    display.style.border = '2px solid #27ae60';
+                // Load URL
+                const savedUrl = localStorage.getItem('banffEmbed' + i);
+                if (savedUrl) {
+                    document.getElementById('embed' + i).value = savedUrl;
+                    
+                    if (savedUrl.includes('airbnb.com')) {
+                        const display = document.getElementById('display' + i);
+                        display.innerHTML = `
+                            <div style="text-align: left;">
+                                <iframe src="${savedUrl}" 
+                                        width="100%" 
+                                        height="450" 
+                                        style="border: none; border-radius: 8px; margin-bottom: 10px;"
+                                        frameborder="0"
+                                        allowfullscreen>
+                                </iframe>
+                                <a href="${savedUrl}" 
+                                   target="_blank" 
+                                   class="link-button" 
+                                   style="display: inline-block; margin-top: 10px;">
+                                    Open in New Tab
+                                </a>
+                            </div>
+                        `;
+                        display.style.border = '2px solid #27ae60';
+                        display.style.textAlign = 'left';
+                    }
                 }
                 
                 // Load notes
