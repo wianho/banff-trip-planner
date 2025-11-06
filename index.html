@@ -377,6 +377,7 @@
                 <button class="tab" onclick="showTab('transportation')">🚗 Transportation</button>
                 <button class="tab" onclick="showTab('gear')">🏂 Gear Rental</button>
                 <button class="tab" onclick="showTab('itinerary')">📅 Itinerary</button>
+                <button class="tab" onclick="showTab('timeline')">⏰ Booking Timeline</button>
                 <button class="tab" onclick="showTab('budget')">💰 Budget</button>
                 <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
                 <button class="tab" onclick="showTab('notes')">📝 Notes</button>
@@ -853,6 +854,159 @@
                 </div>
             </div>
             
+            <!-- BOOKING TIMELINE TAB -->
+            <div id="timeline" class="tab-content">
+                <div class="section">
+                    <h2><span class="icon">⏰</span> Booking Timeline</h2>
+                    
+                    <div class="alert-box">
+                        <strong>Trip Date: January 21-26, 2026</strong><br>
+                        Use this timeline to make sure you book everything at the optimal time for best prices and availability!
+                    </div>
+                    
+                    <div class="itinerary-day" style="border-left-color: #27ae60;">
+                        <div class="day-header" style="color: #27ae60;">✅ COMPLETED - Early November 2024</div>
+                        <div class="day-content">
+                            <strong>Flights:</strong> BOOKED ✓<br>
+                            • Melbourne (MLB) to Calgary (YYC)<br>
+                            • January 21-26, 2026<br>
+                            • Total: $894 for both passengers ($447/person)<br>
+                            • Confirmation: Check email for details<br>
+                            <br>
+                            <strong>Lodging:</strong> BOOKED ✓<br>
+                            • Canmore accommodation<br>
+                            • 5 nights (Jan 21-26)<br>
+                            • Total: $491.79 ($245.90/person)<br>
+                            • Confirmation: Check Airbnb for details
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day" style="border-left-color: #f39c12;">
+                        <div class="day-header" style="color: #f39c12;">📅 UPCOMING - Late November / Early December</div>
+                        <div class="day-content">
+                            <strong>Rental Car - Book by December 1st</strong><br>
+                            <strong>Why now?</strong><br>
+                            • AWD/4WD vehicles in high demand for winter<br>
+                            • Calgary Airport = busy in ski season<br>
+                            • Most companies allow free cancellation until pickup<br>
+                            • Prices stable but availability decreases<br>
+                            <br>
+                            <strong>What to do:</strong><br>
+                            1. Compare prices on Kayak, Enterprise, Budget<br>
+                            2. Filter for AWD or 4WD vehicles<br>
+                            3. Confirm winter tires are included (required by law)<br>
+                            4. Book for 6 days (Jan 21-26)<br>
+                            5. Estimated cost: $250-300/person split<br>
+                            <br>
+                            <strong>Action:</strong> Go to Transportation tab and book!<br>
+                            <div style="margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="timeline-car" onchange="saveTimelineCheck('car')" style="width: 20px; height: 20px;">
+                                    <span style="font-weight: bold;">Mark as booked when complete</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day" style="border-left-color: #3498db;">
+                        <div class="day-header" style="color: #3498db;">📅 UPCOMING - December 2024</div>
+                        <div class="day-content">
+                            <strong>Lift Tickets - Book by January 1st, 2026</strong><br>
+                            <strong>Why wait until December?</strong><br>
+                            • Tickets for late January may not be available yet<br>
+                            • Holiday sales often happen in December<br>
+                            • Still get advance purchase discount ($10-20/day savings)<br>
+                            • No benefit to booking earlier<br>
+                            <br>
+                            <strong>What to do:</strong><br>
+                            1. Decide which resorts you want to hit (see Resorts tab)<br>
+                            2. Option A: Buy individual days at each resort<br>
+                            3. Option B: Buy SkiBig3 pass for all three resorts<br>
+                            4. Book online through resort websites<br>
+                            5. Estimated cost: $350-450/person for 3 days<br>
+                            <br>
+                            <strong>Resort booking links:</strong><br>
+                            • Lake Louise: skilouise.com/lift-tickets<br>
+                            • Sunshine Village: skibanff.com/tickets-passes/lift-tickets<br>
+                            • Mount Norquay: banffnorquay.com/tickets-and-passes<br>
+                            • SkiBig3 Pass: skibig3.com<br>
+                            <br>
+                            <div style="margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="timeline-tickets" onchange="saveTimelineCheck('tickets')" style="width: 20px; height: 20px;">
+                                    <span style="font-weight: bold;">Mark as booked when complete</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day" style="border-left-color: #9b59b6;">
+                        <div class="day-header" style="color: #9b59b6;">📅 UPCOMING - Late December / Early January</div>
+                        <div class="day-content">
+                            <strong>Gear Rentals (if needed) - Book 2-3 weeks before</strong><br>
+                            <strong>Timeline: January 1-7, 2026</strong><br>
+                            <br>
+                            <strong>What to do:</strong><br>
+                            1. Decide if bringing own gear or renting<br>
+                            2. If renting, book online with Canmore shops for discount<br>
+                            3. Options: Rebound Cycle & Ski, Gear Up Sport<br>
+                            4. Estimated cost: $120-150/person for 3 days (if renting)<br>
+                            <br>
+                            <strong>Don't forget:</strong><br>
+                            • Check if your brother can use your gear<br>
+                            • Airlines allow snowboard bags as checked luggage<br>
+                            • Might save money bringing own equipment<br>
+                            <br>
+                            <div style="margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="timeline-gear" onchange="saveTimelineCheck('gear')" style="width: 20px; height: 20px;">
+                                    <span style="font-weight: bold;">Mark as complete (booked or bringing own)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="itinerary-day" style="border-left-color: #e74c3c;">
+                        <div class="day-header" style="color: #e74c3c;">📅 FINAL PREP - Week Before Trip</div>
+                        <div class="day-content">
+                            <strong>January 14-20, 2026</strong><br>
+                            <br>
+                            <strong>One week before departure:</strong><br>
+                            • Confirm all reservations (flights, lodging, car, tickets)<br>
+                            • Check weather forecast for Canmore<br>
+                            • Print or save digital copies of confirmations<br>
+                            • Notify bank about travel to Canada<br>
+                            • Pack gear (see Checklist tab)<br>
+                            • Check passport expiration<br>
+                            • Download offline maps<br>
+                            • Set up cat care for Dave and Kevin<br>
+                            <br>
+                            <strong>Day before:</strong><br>
+                            • Online check-in for flights<br>
+                            • Charge all electronics<br>
+                            • Final pack check<br>
+                            • Get hyped! 🏂<br>
+                            <br>
+                            <div style="margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="timeline-prep" onchange="saveTimelineCheck('prep')" style="width: 20px; height: 20px;">
+                                    <span style="font-weight: bold;">Mark when final prep is complete</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <strong>Pro Tips:</strong><br>
+                        • Set phone reminders for each booking deadline<br>
+                        • Screenshot confirmations and save to a "Banff Trip" folder<br>
+                        • Most things can be cancelled/modified, so book early for peace of mind<br>
+                        • Check this timeline weekly to stay on track<br>
+                        • Update the Budget tab as you book each item
+                    </div>
+                </div>
+            </div>
+            
             <!-- BUDGET TAB -->
             <div id="budget" class="tab-content">
                 <div class="section">
@@ -1188,6 +1342,24 @@ This saves automatically to your browser!">
             }
         }
         
+        function saveTimelineCheck(item) {
+            const checkbox = document.getElementById('timeline-' + item);
+            localStorage.setItem('banffTimeline-' + item, checkbox.checked);
+        }
+        
+        function loadTimelineChecks() {
+            const items = ['car', 'tickets', 'gear', 'prep'];
+            items.forEach(item => {
+                const saved = localStorage.getItem('banffTimeline-' + item);
+                if (saved === 'true') {
+                    const checkbox = document.getElementById('timeline-' + item);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                }
+            });
+        }
+        
         // Auto-save notes
         document.addEventListener('DOMContentLoaded', function() {
             const notesArea = document.getElementById('tripNotes');
@@ -1212,6 +1384,7 @@ This saves automatically to your browser!">
             loadChecklist();
             loadNotes();
             loadAllPropertyData();
+            loadTimelineChecks();
             
             // Load last viewed tab
             const lastTab = localStorage.getItem('banffCurrentTab');
